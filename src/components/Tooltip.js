@@ -1,4 +1,4 @@
-import React,{ useState, cloneElement } from "react";
+import React, { useState, cloneElement } from "react";
 
 export default function Tooltip({ text, children }) {
   const [show, setShow] = useState(false);
@@ -16,8 +16,10 @@ export default function Tooltip({ text, children }) {
       }
     },
     <>
-      {children.props.children}
-      {show && <div className="tooltiptext">{text}</div>}
+      {children.props.children}   {/* original content */}
+      {show && (                  /* tooltip goes inside h2/p */
+        <div className="tooltiptext">{text}</div>
+      )}
     </>
   );
 }

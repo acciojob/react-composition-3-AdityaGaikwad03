@@ -1,25 +1,29 @@
+import React, { useState, cloneElement } from "react";
 
-import React from "react";
-import Tooltip from "./Tooltip";
-import './../styles/App.css';
+export default function Tooltip({ text, children }) {
+  const [show, setShow] = useState(false);
 
-const App = () => {
-  return (
-    <div>
-        {/* Do not remove the main div */}
-        <div style={{ padding: "50px" }}>
-      <Tooltip text="This is a tooltip message">
-          <h2>Hover over me</h2>
-      </Tooltip>
+  // We clone the child (h2 or p) and inject classes + events + new children
+  return cloneElement(
+    children,
+    {
+      className: `${children.props.className || ""} tooltip`,
+      onMouseEnter: () => setShow(true),
+      onMouseLeave: () => setShow(false),
+      style: {
+        ...(children.props.style || {}),
+        position: "relative",
+        display: "inline-block",
+      },
+    },
+    <>
+      {/* Preserve original child text/content */}
+      {children.props.children}
 
-      <br /><br />
-
-      <Tooltip text="Another helpful tooltip">
-        <p>Hover over me to see another tooltip</p>
-      </Tooltip>
-    </div>
-    </div>
-  )
+      {/* Insert tooltip as a child INSIDE h2/p */}
+      {show && (
+        <div className="tooltiptext">{text}</div>
+      )}
+    </>
+  );
 }
-
-export default App
