@@ -3,6 +3,9 @@ import React, { useState, cloneElement } from "react";
 export default function Tooltip({ text, children }) {
   const [show, setShow] = useState(false);
 
+  // If no children passed, return null (prevents Cypress crash)
+  if (!children) return null;
+
   return cloneElement(
     children,
     {
@@ -12,14 +15,12 @@ export default function Tooltip({ text, children }) {
       style: {
         ...(children.props.style || {}),
         position: "relative",
-        display: "inline-block"
-      }
+        display: "inline-block",
+      },
     },
     <>
-      {children.props.children}   {/* original content */}
-      {show && (                  /* tooltip goes inside h2/p */
-        <div className="tooltiptext">{text}</div>
-      )}
+      {children.props.children}
+      {show && <div className="tooltiptext">{text}</div>}
     </>
   );
 }
