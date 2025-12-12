@@ -1,4 +1,4 @@
-import { useState, cloneElement } from "react";
+import React,{ useState, cloneElement } from "react";
 
 export default function Tooltip({ text, children }) {
   const [show, setShow] = useState(false);
