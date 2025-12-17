@@ -1,26 +1,20 @@
-import React, { useState, cloneElement } from "react";
+import React, { useState } from "react";
 
 export default function Tooltip({ text, children }) {
   const [show, setShow] = useState(false);
 
-  // If no children passed, return null (prevents Cypress crash)
+  // If no children, render nothing
   if (!children) return null;
 
-  return cloneElement(
-    children,
-    {
-      className: `${children.props.className || ""} tooltip`,
-      onMouseEnter: () => setShow(true),
-      onMouseLeave: () => setShow(false),
-      style: {
-        ...(children.props.style || {}),
-        position: "relative",
-        display: "inline-block",
-      },
-    },
-    <>
-      {children.props.children}
-      {show && <div className="tooltiptext">{text}</div>}
-    </>
+  return (
+    <span
+      className="tooltip"
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+      style={{ position: "relative", display: "inline-block" }}
+    >
+      {children}
+      {show && <span className="tooltiptext">{text}</span>}
+    </span>
   );
 }
