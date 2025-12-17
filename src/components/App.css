@@ -5,19 +5,12 @@
 
 .tooltiptext {
   position: absolute;
-  background-color: red;
+  background: red;
   color: white;
   padding: 6px;
   border-radius: 4px;
-  /* top: 100%; */
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-}
-
-.tooltiptext {
-  visibility: hidden;
-}
-.tooltip:hover .tooltiptext {
-  visibility: visible;
+  z-index: 10;
 }

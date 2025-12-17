@@ -9,9 +9,11 @@ export default function Tooltip({ text, children }) {
   return React.cloneElement(
     children,
     {
-      className: `${children.props.className || ""} tooltip`,
+        className: `${children.props.className || ""} tooltip`,
       onMouseEnter: () => setShow(true),
       onMouseLeave: () => setShow(false),
+      onMouseOver: () => setShow(true),
+      onMouseOut: () => setShow(false),
     },
     <>
       {children.props.children}
