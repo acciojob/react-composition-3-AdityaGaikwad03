@@ -4,7 +4,7 @@ const Tooltip = ({ text, children }) => {
   const [show, setShow] = useState(false);
 
   return React.cloneElement(children, {
-    className: "tooltip",
+    // className: "tooltip",
     onMouseEnter: () => setShow(true),
     onMouseLeave: () => setShow(false),
     children: (
