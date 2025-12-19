@@ -1,16 +1,31 @@
+body {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
 .tooltip {
   position: relative;
-  display: inline-block;
+  display: block;
+  text-align: center;
+  margin: 40px 0;
+  cursor: pointer;
 }
 
 .tooltiptext {
   position: absolute;
-  background: red;
-  color: white;
-  padding: 6px;
-  border-radius: 4px;
+  bottom: 120%;
   left: 50%;
   transform: translateX(-50%);
+
+  background-color: red;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
   white-space: nowrap;
-  z-index: 10;
+}
+
+hr {
+  border: none;
+  border-top: 1px dotted #999;
+  width: 100%;
 }
